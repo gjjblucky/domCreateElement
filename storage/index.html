@@ -21,15 +21,15 @@
             const name=event.target.username.value;
             const email=event.target.emailId.value;
             const phoneno=event.target.phonenumber.value;
-            localStorage.setItem('name',name);
-            localStorage.setItem("email" ,email);
-            localStorage.setItem('phonenumber', phoneno);
+            // localStorage.setItem('name',name);
+            // localStorage.setItem("email" ,email);
+            // localStorage.setItem('phonenumber', phoneno);
             let myobj={
                 name,
                 email,
                 phoneno
             }
-            localStorage.setItem('userdetails',JSON.stringify(myobj));
+            localStorage.setItem(myobj.name,JSON.stringify(myobj));
         }
     </script>
 </body>
