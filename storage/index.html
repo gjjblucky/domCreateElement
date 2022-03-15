@@ -13,7 +13,7 @@
 
 <button>submit</button>
     </form>
-
+<ul id="list of user"></ul>
     <script>
         function saveToLocalStorage(event)
         {
@@ -30,6 +30,12 @@
                 phoneno
             }
             localStorage.setItem(myobj.name,JSON.stringify(myobj));
+            showNewUserOnScreen(myobj)
+        }
+        function showNewUserOnScreen(user){
+            const parentNode=document.getElementById('list of user');
+            const childHTML=`<li>${user.name}-${user.email}</li>`
+            parentNode.innerHTML=parentNode.innerHTML+childHTML;
         }
     </script>
 </body>
