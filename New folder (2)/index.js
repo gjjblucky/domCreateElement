@@ -1,10 +1,23 @@
+//currying by bind method
 
-var a=2;
-var c=2;
-function b(){
-    var x=2;
-    var c=4;
-    console.log(c);
+// let multiply=function(x,y){
+//     console.log(x * y);
+// }
+// let multiplyBy2=multiply.bind(this,2);
+// multiplyBy2(5);
+
+// let multiplyBy3=multiply.bind(this,3);
+// multiplyBy3(5);
+
+let multiply=function(x){
+
+    return function(y){
+        console.log(x * y);
+    }
+
 }
-console.log(a);
-console.log(window.a);
+ let multiplyBy2=multiply(2);
+multiplyBy2(5);
+
+ let multiplyBy3=multiply(3);
+ multiplyBy3(5);
