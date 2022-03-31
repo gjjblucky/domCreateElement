@@ -1,0 +1,99 @@
+<html>
+<body>
+<form onsubmit="saveToLocalStorage(event)">
+
+    <label>Choose expenseamount</label>
+<input id="amount" type="number" name="Choose expenseamount">
+
+    <label>Description</label>
+<input id="description" type="text" name="description">
+
+<br>
+<br>
+
+<label>Choose a category</label>
+<select  id="category" name="category">
+<option>fuel</option>
+<option>electricity</option>
+<option>petrol</option>
+<option>movie</option>
+</select>
+
+</select>
+<button>Add expenses</button>
+
+</form>
+<ul id="list of user"></ul>
+
+<script>
+
+window.addEventListener('DOMContentLoaded',dispdata);
+
+     function saveToLocalStorage(event)
+        {
+            event.preventDefault();
+            const amount=event.target.amount.value;
+            const description=event.target.description.value;
+            const category=event.target.category.value;
+            
+            let myobj={
+            amount,
+            description,
+            category
+            }
+            localStorage.setItem(myobj.description,JSON.stringify(myobj));
+            showNewUserOnScreen(myobj)
+        }
+        
+
+function dispdata(){
+            const storeddata=localStorage;
+            const keys=Object.keys(storeddata);
+            for(let i=0;i<keys.length;i++){
+                const key=keys[i];
+                const userinfo_str=storeddata[key];
+                const userinfo_destr=JSON.parse(userinfo_str);
+                showNewUserOnScreen(userinfo_destr);
+            }
+        }
+        function showNewUserOnScreen(user){
+            const parentNode=document.getElementById('list of user');
+            const childHTML=`<li id='${user.description}' > ${user.amount}-${user.description}_${user.category}
+                <button onclick=deleteUser('${user.description}')> delete user</button>
+                <button onclick=editUserDetails('${user.amount}','${user.description}','${user.category}')>Edit user</button>  
+                 </li>`;
+            parentNode.innerHTML=parentNode.innerHTML+childHTML;
+        } 
+
+        function editUserDetails(amount,description,category){
+
+document.getElementById('amount').value = amount;
+document.getElementById('description').value = description;
+document.getElementById('category').value =category;
+
+deleteUser(description)
+}
+
+        function deleteUser(description)
+        {
+            console.log(description)
+            localStorage.removeItem(description);
+            removeUserFromScreen(description);
+            
+        }
+        function removeUserFromScreen(description){
+            const parentNode=document.getElementById('list of user');
+            const childNodeToBeDeleted=document.getElementById(description);
+            parentNode.removeChild(childNodeToBeDeleted)
+        }
+
+</script>
+
+</body>
+
+
+
+
+
+
+</html>
