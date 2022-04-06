@@ -25,6 +25,10 @@
 </form>
 <ul id="list of user"></ul>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js">
+
+</script>
+
 <script>
 
 window.addEventListener('DOMContentLoaded',dispdata);
@@ -41,8 +45,16 @@ window.addEventListener('DOMContentLoaded',dispdata);
             description,
             category
             }
-            localStorage.setItem(myobj.description,JSON.stringify(myobj));
-            showNewUserOnScreen(myobj)
+            axios.post("https://crudcrud.com/api/2c6be647acbb420ea8407c18d90fcf31/appointmentdata",myobj)
+            .then((response) => {
+                showNewUserOnScreen(response.data)
+                console.log(response)
+            })
+            .catch((err) =>{
+                console.log(err)
+            })
+            // localStorage.setItem(myobj.description,JSON.stringify(myobj));
+            // showNewUserOnScreen(myobj)
         }
         
 
