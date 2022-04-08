@@ -45,53 +45,41 @@ event.preventDefault();
             description,
             category
             }
-            
+        
 const post1=axios.post('https://crudcrud.com/api/530869aeca0743edabdbaf6700c351c0/appointmentlist',myobj)
+let response=await post1;
+        
                         try{
-                            let response=await post1;
+                           
                               showNewUserOnScreen(response.data);
                                                        console.log(response)
                         }catch(err){
                                console.log(err)
                         }
-            // localStorage.setItem(myobj.description,JSON.stringify(myobj));
-            // showNewUserOnScreen(myobj)
-        }
+                    }
+        
         
 
-function dispdata(){
-// axios.get("https://crudcrud.com/api/530869aeca0743edabdbaf6700c351c0/appointmentlist")
-// .then((response) => {
+async function dispdata(){
 
                 const get1=axios.get('https://crudcrud.com/api/530869aeca0743edabdbaf6700c351c0/appointmentlist')
-                try{
                 let response2=await get1;
-//console.log(response)
 
-// for( var i=0;i<response.data.length;i++){
-//     showNewUserOnScreen(response.data[i]);
-// }
+                try{
+                
+
 for(var i=0;i<response2.data.length;i++){
     showNewUserOnScreen(response2.data[i]);
 }
-// })
-//                 .catch((err)=>{
+
                 }catch(err){
                    
                     console.log(err);
-                // })
+             
                 }
-            } 
+            
+            }
 
-
-            // const storeddata=localStorage;
-            // const keys=Object.keys(storeddata);
-            // for(let i=0;i<keys.length;i++){
-            //     const key=keys[i];
-            //     const userinfo_str=storeddata[key];
-            //     const userinfo_destr=JSON.parse(userinfo_str);
-            //     showNewUserOnScreen(userinfo_destr);
-            // }
         
         
         function showNewUserOnScreen(user){
@@ -112,28 +100,22 @@ document.getElementById('category').value =category;
 deleteUser(userid);
 }
 
-//         function deleteUser(userid)
-//         {
-// axios.delete(`https://crudcrud.com/api/530869aeca0743edabdbaf6700c351c0/appointmentlist/${userid}`)
-// .then((response) =>{
+
       async function deleteUser(userid){ 
 const delete1=axios.delete(`https://crudcrud.com/api/530869aeca0743edabdbaf6700c351c0/appointmentlist/${userid}`)
-
+const response3=await delete1;
+      
  try{
-                    const response3=await delete1;
+                   
                  removeUserFromScreen(userid);
-// })
-// .catch((err) =>{
+
 }catch(err){ 
     console.log(err);
-// })
+
 }
 
-            // console.log(description)
-            // localStorage.removeItem(description);
-            // removeUserFromScreen(description);
-            
-        }
+      }          
+        
 
         function removeUserFromScreen(userid){
             const parentNode=document.getElementById('list of user');
